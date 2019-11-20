@@ -350,7 +350,7 @@ Requires:       python2-flask
 # These LC dependencies are needed in build due to tests
 BuildRequires:  python-lxml
 %if 0%{?rhel} == 7
-BuildRequires:  python-gevent102
+BuildRequires:  python-gevent
 %else
 BuildRequires:  python-gevent >= 1.0
 %endif
@@ -359,7 +359,7 @@ Requires:       python-setuptools
 Requires:       python-lxml
 Requires:       python-gssapi
 %if 0%{?rhel} == 7
-Requires:       python-gevent102
+Requires:       python-gevent
 %else
 Requires:       python-gevent >= 1.0
 %endif
