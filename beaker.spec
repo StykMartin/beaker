@@ -159,12 +159,10 @@ BuildRequires:  python-kid
 BuildRequires:  createrepo
 BuildRequires:  createrepo_c
 BuildRequires:  ipxe-bootimgs
-BuildRequires:  syslinux
 BuildRequires:  mtools
 BuildRequires:  yum
 Requires:       createrepo_c
 Requires:       ipxe-bootimgs
-Requires:       syslinux
 Requires:       mtools
 Requires:       intltool
 Requires:       crontabs
@@ -326,7 +324,6 @@ Requires:       %{name}-common = %{version}-%{release}
 Requires:       python
 Requires:       crontabs
 Requires:       httpd
-Requires:       syslinux
 Requires:       yum-utils
 Requires:       fence-agents
 Requires:       ipmitool
