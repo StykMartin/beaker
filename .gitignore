@@ -1,32 +1,47 @@
+# Common
+.idea/
 *.pyc
 *.swp
 *.tmp
-dist
-rpm-build
 *.egg-info
 *.bz2
-Harness/build
-Server/assets-cache/
-Server/build
-Server/build.out
-Server/devdata.sqlite
-Common/build
-Client/build
-Client/build.out
-LabController/build
-IntegrationTests/build
-documentation/_build
-documentation/man/bkr-*.rst
-documentation/man/subcommands.rst
+dist
+rpm-build
 *.diff
 selenium.log
 /Tasks/distribution/beaker/dogfood/selenium-server-standalone-*.jar
 /rpmbuild-output/
-/IntegrationTests/test-consoles/
-/IntegrationTests/test-harnessdir/
-/IntegrationTests/test-logs/
-/IntegrationTests/test-tftpboot/
-/IntegrationTests/test-repos/
-/IntegrationTests/test-rpms/
-/IntegrationTests/test-server-joblogs/
 venv/
+
+# Common package
+beaker/Common/build
+beaker/Common/build.out
+
+# Client package
+beaker/Client/build
+beaker/Client/build.out
+
+# Labcontroller package
+beaker/LabController/build
+beaker/LabController/build.out
+
+# Server package
+beaker/Server/assets-cache/
+beaker/Server/build
+beaker/Server/build.out
+beaker/Server/devdata.sqlite
+
+# Integration Test package
+beaker/IntegrationTests/build
+beaker/IntegrationTests/test-consoles/
+beaker/IntegrationTests/test-harnessdir/
+beaker/IntegrationTests/test-logs/
+beaker/IntegrationTests/test-tftpboot/
+beaker/IntegrationTests/test-repos/
+beaker/IntegrationTests/test-rpms/
+beaker/IntegrationTests/test-server-joblogs/
+
+# Documentation
+docs/_build
+docs/man/bkr-*.rst
+docs/man/subcommands.rst

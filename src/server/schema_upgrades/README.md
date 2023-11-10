@@ -1,3 +1,4 @@
+# OBSOLETE
 This directory contained instructions for administrators upgrading their Beaker 
 installation, including database schema changes and configuration changes.
 

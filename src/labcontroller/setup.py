@@ -1,19 +1,22 @@
 from setuptools import setup, find_packages
-import commands
+import subprocess
 from glob import glob
 
+
 def systemd_unit_dir():
-    status, output = commands.getstatusoutput('pkg-config --variable systemdsystemunitdir systemd')
+    status, output = subprocess.getstatusoutput('pkg-config --variable systemdsystemunitdir systemd')
     if status or not output:
-        return None # systemd not found
+        return None  # systemd not found
     return output.strip()
+
 
 def systemd_tmpfiles_dir():
     # There doesn't seem to be a specific pkg-config variable for this
-    status, output = commands.getstatusoutput('pkg-config --variable prefix systemd')
+    status, output = subprocess.getstatusoutput('pkg-config --variable prefix systemd')
     if status or not output:
-        return None # systemd not found
+        return None  # systemd not found
     return output.strip() + '/lib/tmpfiles.d'
+
 
 data_files = [
     ('/etc/beaker/', ['labcontroller.conf']),
@@ -60,12 +63,12 @@ setup(
     ],
 
     packages=find_packages('src'),
-    package_dir = {'':'src'},
+    package_dir={'': 'src'},
 
-    namespace_packages = ['bkr'],
+    namespace_packages=['bkr'],
 
     data_files=data_files,
-    package_data = {
+    package_data={
         'bkr.labcontroller': [
             'default.conf',
             'power-scripts/*',
@@ -74,14 +77,14 @@ setup(
         ],
     },
 
-    classifiers = [
+    classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python :: 2.7',
         'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
     ],
 
-    entry_points = {
+    entry_points={
         'console_scripts': (
             'beaker-proxy    = bkr.labcontroller.main:main',
             'beaker-watchdog = bkr.labcontroller.watchdog:main',

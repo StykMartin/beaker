@@ -2690,13 +2690,13 @@ class RecipeTaskResultTest(DatabaseTestCase):
         task = Task.by_name(u'/distribution/check-install')
         rt = RecipeTask.from_task(task)
         rt.recipe_id = self.recipe.id
-        rt._result(TaskResult.pass_, path='.', score='', summary='empty string')
-        rt._result(TaskResult.pass_, path='.', score='123foo', summary='numbered string')
-        rt._result(TaskResult.pass_, path='.', score='/foo/bar', summary='path')
-        rt._result(TaskResult.pass_, path='.', score='8.88', summary='truncated')
-        rt._result(TaskResult.pass_, path='.', score='8.8.8', summary='invalid decimal')
-        rt._result(TaskResult.pass_, path='.', score='-1', summary='negative')
-        rt._result(TaskResult.pass_, path='.', score='10', summary='correct')
+        rt._result(TaskResult.pass_, path='', score='', summary='empty string')
+        rt._result(TaskResult.pass_, path='', score='123foo', summary='numbered string')
+        rt._result(TaskResult.pass_, path='', score='/foo/bar', summary='path')
+        rt._result(TaskResult.pass_, path='', score='8.88', summary='truncated')
+        rt._result(TaskResult.pass_, path='', score='8.8.8', summary='invalid decimal')
+        rt._result(TaskResult.pass_, path='', score='-1', summary='negative')
+        rt._result(TaskResult.pass_, path='', score='10', summary='correct')
         session.flush()
 
         session.refresh(rt)
@@ -2718,7 +2718,7 @@ class RecipeTaskResultTest(DatabaseTestCase):
 
     # https://bugzilla.redhat.com/show_bug.cgi?id=915319
     def test_logs_appear_in_results_xml(self):
-        rtr_id = self.recipe_task.pass_(path=u'.', score=None, summary=None)
+        rtr_id = self.recipe_task.pass_(path=u'', score=None, summary=None)
         rtr = RecipeTaskResult.query.get(rtr_id)
         rtr.logs = [LogRecipeTaskResult(path=u'asdf', filename=u'log.txt')]
         root = rtr.to_xml(clone=False)

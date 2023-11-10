@@ -107,7 +107,7 @@ def start_wizard(args, config=None, env=None, extra_env=None, **kwargs):
         global default_wizard_config
         config = default_wizard_config
     log.debug('Starting beaker-wizard %r as %r in directory %s',
-            wizard_command, args, kwargs.get('cwd', '.'))
+              wizard_command, args, kwargs.get('cwd', ''))
     env = dict(env or os.environ)
     env['PYTHONUNBUFFERED'] = '1'
     env['BEAKER_WIZARD_CONF'] = config.name

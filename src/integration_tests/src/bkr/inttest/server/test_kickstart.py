@@ -189,7 +189,7 @@ class KickstartTest(unittest.TestCase):
                     path=u'../debuginfo'),
                 DistroTreeRepo(repo_id=u'repos_Workstation-optional', repo_type=u'addon',
                     path=u'../../../Workstation-optional/x86_64/os'),
-                DistroTreeRepo(repo_id=u'repos_Workstation', repo_type=u'os', path=u'.'),
+                DistroTreeRepo(repo_id=u'repos_Workstation', repo_type=u'os', path=u''),
                 DistroTreeRepo(repo_id=u'repos_addons_ScalableFileSystem',
                     repo_type=u'addon', path=u'addons/ScalableFileSystem'),
             ]
@@ -205,7 +205,7 @@ class KickstartTest(unittest.TestCase):
                     path=u'../debuginfo'),
                 DistroTreeRepo(repo_id=u'repos_Server-optional', repo_type=u'addon',
                     path=u'../../../Server-optional/s390x/os'),
-                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u'.'),
+                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u''),
             ]
             cls.rhel70nightly_server_ppc64 = data_setup.create_distro_tree(
                 distro=cls.rhel70nightly, variant=u'Server', arch=u'ppc64',
@@ -219,7 +219,7 @@ class KickstartTest(unittest.TestCase):
                     path=u'../debuginfo'),
                 DistroTreeRepo(repo_id=u'repos_Server-optional', repo_type=u'addon',
                     path=u'../../../Server-optional/ppc64/os'),
-                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u'.'),
+                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u''),
             ]
 
             cls.rhel72 = data_setup.create_distro(name=u'RHEL-7.2-20151030.0',
@@ -236,7 +236,7 @@ class KickstartTest(unittest.TestCase):
                     path=u'../debuginfo'),
                 DistroTreeRepo(repo_id=u'repos_Server-optional', repo_type=u'addon',
                     path=u'../../../Server-optional/ppc64/os'),
-                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u'.'),
+                DistroTreeRepo(repo_id=u'repos_Server', repo_type=u'os', path=u''),
             ]
 
             cls.rhel7_alt_nightly = data_setup.create_distro(name=u'RHEL-ALT-7.6-20181023.n.0',
@@ -254,7 +254,7 @@ class KickstartTest(unittest.TestCase):
                     path=u'../debuginfo'),
                 DistroTreeRepo(repo_id=u'repos_Workstation-optional', repo_type=u'addon',
                     path=u'../../../Workstation-optional/x86_64/os'),
-                DistroTreeRepo(repo_id=u'repos_Workstation', repo_type=u'os', path=u'.'),
+                DistroTreeRepo(repo_id=u'repos_Workstation', repo_type=u'os', path=u''),
                 DistroTreeRepo(repo_id=u'repos_addons_ScalableFileSystem',
                     repo_type=u'addon', path=u'addons/ScalableFileSystem'),
             ]
@@ -381,7 +381,7 @@ class KickstartTest(unittest.TestCase):
                 lab_controllers=[cls.lab_controller],
                 urls=[u'http://lab.test-kickstart.invalid/distros/CentOS-7/os/x86_64/'])
             cls.centos7_x86_64.repos[:] = [
-                DistroTreeRepo(repo_id=u'distro', repo_type=u'distro', path=u'.'),
+                DistroTreeRepo(repo_id=u'distro', repo_type=u'distro', path=u''),
             ]
 
             cls.f17 = data_setup.create_distro(name=u'Fedora-17',
