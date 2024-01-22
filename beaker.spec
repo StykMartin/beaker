@@ -239,9 +239,6 @@ BuildRequires:     python-lxml
 BuildRequires:     python-daemon
 %endif
 
-# Syslinux is only available on x86_64. This package is used to provide pxelinux.0, which is then copied to the TFTP directory.
-# Removing this package will result in no default boot loader, but conversely will allow multi-arch support.
-Requires:          syslinux
 Requires:          %{name}-common = %{version}-%{release}
 Requires:          crontabs
 Requires:          httpd
@@ -267,6 +264,9 @@ Requires:          python3-lxml
 Requires:          python3-setuptools
 Requires:          python3-werkzeug
 Requires:          python3-gevent
+# Syslinux is only available on x86_64. This package is used to provide pxelinux.0, which is then copied to the TFTP directory.
+# Failure to install this package will result in no default boot loader, but on the flip side will allow for multi-arch support.
+Recommends:        syslinux
 %else
 Requires:          fence-agents
 Requires:          python
@@ -278,6 +278,7 @@ Requires:          python-lxml
 Requires:          python-setuptools
 Requires:          python-werkzeug
 Requires:          python2-gevent112
+Requires:          syslinux
 %endif
 
 %package lab-controller-addDistro
