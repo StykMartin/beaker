@@ -45,6 +45,7 @@ jobs:
 
   integration-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     env:
       MYSQL_USER: beaker
       MYSQL_PASSWORD: beaker
@@ -126,3 +127,68 @@ jobs:
           # Disable Selenium tests until we have plan for selenium driver + firefox
           rm -rf src/bkr/inttest/server/selenium
           ./run-tests.sh -v ${{ matrix.test-target }}
+
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    container:
+      image: ${{ matrix.os-target.name }}
+      options: --init
+    strategy:
+      fail-fast: false
+      matrix:
+        test-target:
+          - Common
+          - Client
+          - LabController
+        os-target:
+          - name: centos:7
+          - name: quay.io/centos/centos:stream8
+            additional_repo: "powertools"
+          - name: quay.io/centos/centos:stream9
+            additional_repo: "crb"
+            # After fixing the names of unit test functions, migrate to the latest
+          - name: fedora:38
+    steps:
+      - name: Set BKR_PY3 environment variable
+        run: echo "BKR_PY3=1" >> $GITHUB_ENV
+        if: matrix.os-target.name != 'centos:7'
+
+      - name: Install DNF and plugins
+        run: yum install -y dnf 'dnf-command(builddep)' 'dnf-command(config-manager)'
+
+      - name: Enable additional repositories
+        run: |
+          IFS=', ' read -r -a repos <<< "${{ matrix.os-target.additional_repo }}"
+          for repo in "${repos[@]}"; do
+            dnf config-manager --set-enabled $repo
+          done
+
+      # Do not upgrade to @v4 as node 20 is incompatible with CentOS 7
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Add Beaker Server YUM repository
+        if: matrix.os-target.name == 'centos:7'
+        run: |
+          curl -o /etc/yum.repos.d/beaker-server.repo https://beaker-project.org/yum/beaker-server-RedHatEnterpriseLinux.repo
+
+      - name: Use EPEL
+        if: matrix.os-target.name != 'centos:7' && !startsWith(matrix.os-target.name, 'fedora:')
+        run: |
+          dnf install -y epel-release
+
+      # Build dependencies must be sufficient, the same is done during RPM build
+      - name: Install Beaker dependency from specfile
+        run: |
+          dnf builddep -y *.spec
+
+      - name: Show Python Environment
+        if: matrix.os-target.name != 'centos:7'
+        run: |
+          python3 -m pip freeze
+
+      - name: Run unit tests
+        run: |
+          pushd ${{ matrix.test-target }}
+          ./run-tests.sh
