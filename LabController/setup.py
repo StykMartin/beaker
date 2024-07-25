@@ -1,16 +1,21 @@
 from setuptools import setup, find_packages
-import commands
 from glob import glob
 
+try:
+    from subprocess import getstatusoutput
+except ImportError:
+    from commands import getstatusoutput
+
+
 def systemd_unit_dir():
-    status, output = commands.getstatusoutput('pkg-config --variable systemdsystemunitdir systemd')
+    status, output = getstatusoutput('pkg-config --variable systemdsystemunitdir systemd')
     if status or not output:
         return None # systemd not found
     return output.strip()
 
 def systemd_tmpfiles_dir():
     # There doesn't seem to be a specific pkg-config variable for this
-    status, output = commands.getstatusoutput('pkg-config --variable prefix systemd')
+    status, output = getstatusoutput('pkg-config --variable prefix systemd')
     if status or not output:
         return None # systemd not found
     return output.strip() + '/lib/tmpfiles.d'
@@ -27,7 +32,7 @@ data_files = [
     ('/var/lib/beaker', ['addDistro/addDistro.sh']),
     ('/var/lib/beaker/addDistro.d', glob('addDistro/addDistro.d/*')),
     ('/var/www/beaker/logs', []),
-    ('/usr/share/bkr/lab-controller', ['apache/404.html'] + glob('aux/*')),
+    ('/usr/share/bkr/lab-controller', ['apache/404.html'] + glob('extra/*')),
 ]
 if systemd_unit_dir():
     data_files.extend([
@@ -37,14 +42,6 @@ if systemd_unit_dir():
                               'systemd/beaker-transfer.service']),
         (systemd_tmpfiles_dir(), ['tmpfiles.d/beaker-lab-controller.conf']),
         ('/run/beaker-lab-controller', []),
-    ])
-else:
-    data_files.extend([
-        ('/etc/init.d', ['init.d/beaker-proxy',
-                         'init.d/beaker-transfer',
-                         'init.d/beaker-provision',
-                         'init.d/beaker-watchdog']),
-        ('/var/run/beaker-lab-controller', []),
     ])
 
 setup(
