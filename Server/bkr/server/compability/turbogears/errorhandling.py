@@ -70,7 +70,7 @@ def dispatch_error_adaptor(func):
 def try_call(func, self, *args, **kw):
     """Call function, catch and dispatch any resulting exception."""
     # turbogears.database import here to avoid circular imports
-    from turbogears.database import restart_transaction
+    from bkr.server.compability.turbogears.database import restart_transaction
     try:
         return func(self, *args, **kw)
     except Exception as e:

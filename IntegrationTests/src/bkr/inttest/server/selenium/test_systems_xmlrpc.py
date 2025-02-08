@@ -12,7 +12,7 @@ import time
 import datetime
 import xmlrpclib
 import crypt
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 
 from bkr.inttest.server.selenium import XmlRpcTestCase
 from bkr.inttest.assertions import assert_datetime_within, \

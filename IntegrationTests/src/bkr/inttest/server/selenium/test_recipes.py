@@ -11,7 +11,7 @@ import re
 import urlparse
 import requests
 import lxml.etree
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 
 from bkr.server.model import TaskStatus, TaskResult, RecipeTaskResult, \
     Task, RecipeTaskComment, RecipeTaskResultComment, RecipeTask, \

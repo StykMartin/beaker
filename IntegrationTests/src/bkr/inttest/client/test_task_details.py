@@ -6,7 +6,7 @@
 
 import re
 import lxml.etree
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 from bkr.inttest import data_setup
 from bkr.inttest.client import run_client, ClientError, ClientTestCase
 
