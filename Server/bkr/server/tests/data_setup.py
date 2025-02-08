@@ -18,7 +18,7 @@ import turbogears.config
 import turbogears.database
 import uuid
 from sqlalchemy.orm.exc import NoResultFound
-from turbogears.database import session, metadata
+from bkr.server.compability.turbogears.database import session, metadata
 
 from bkr.server import dynamic_virt
 from bkr.server.model import (

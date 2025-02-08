@@ -3,7 +3,7 @@
 import sys
 import os.path
 import datetime
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 from bkr.server.util import load_config, log_to_stream
 from bkr.server.model import Task
 from bkr.server import testinfo

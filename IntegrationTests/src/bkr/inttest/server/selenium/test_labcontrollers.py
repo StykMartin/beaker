@@ -9,7 +9,7 @@ import requests
 import datetime
 import xmlrpclib
 from threading import Thread, Event
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 from sqlalchemy.orm.exc import NoResultFound
 
 from bkr.inttest.server.selenium import XmlRpcTestCase, \

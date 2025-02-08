@@ -17,7 +17,7 @@ from decimal import Decimal
 from mock import patch
 import inspect
 import kid
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 from bkr.server.installopts import InstallOptions
 from bkr.server import model, identity
 from bkr.server.model import System, SystemStatus, SystemActivity, TaskStatus, \

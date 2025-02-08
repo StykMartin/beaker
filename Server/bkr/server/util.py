@@ -21,7 +21,7 @@ import turbogears
 from sqlalchemy import create_engine
 from sqlalchemy.orm.exc import NoResultFound
 from turbogears import config, url
-from turbogears.database import get_engine
+from bkr.server.compability.turbogears.database import get_engine
 
 from bkr.server.app import app
 from bkr.server.bexceptions import DatabaseLookupError

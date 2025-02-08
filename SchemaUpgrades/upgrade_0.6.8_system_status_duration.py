@@ -2,7 +2,7 @@
 
 import datetime
 from sqlalchemy import and_
-from turbogears.database import session
+from bkr.server.compability.turbogears.database import session
 from bkr.server.util import load_config
 from bkr.server.model import System, SystemStatus, SystemActivity, \
         SystemStatusDuration
