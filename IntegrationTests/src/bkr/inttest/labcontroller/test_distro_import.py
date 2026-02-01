@@ -24,7 +24,7 @@ _git_root_dir = os.path.join(_current_dir, '..', '..', '..', '..', '..')
 
 if os.path.exists(os.path.join(_git_root_dir, '.git')):
     # Looks like we are in a git checkout
-    _command = os.path.join(_git_root_dir, 'LabController/src/bkr/labcontroller/distro_import.py')
+    _command = os.path.join(_git_root_dir, 'LabController/src/bkr/labcontroller/distro_import/__main__.py')
 else:
     _command = '/usr/bin/beaker-import'
 
